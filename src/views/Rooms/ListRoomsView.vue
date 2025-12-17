@@ -6,7 +6,7 @@ import CreateRoomDialog from './CreateRoomDialog.vue';
 const columns = [
   { header: 'ID', field: 'id' },
   { header: 'Name', field: 'name' },
-  { header: 'Descrição', field: 'description' },
+  { header: 'Description', field: 'description' },
 ];
 
 const createRoomDialog = ref(null);
@@ -49,6 +49,7 @@ async function loadingAllRooms() {
         </div>
       </template>
       <Column v-for="col in columns" :field="col.field" :header="col.header" />
+      <Column header="Actions"></Column>
       <template #empty>
         <p class="empty-text">No rooms registered.</p>
       </template>
