@@ -6,6 +6,7 @@ const items = routes.map((route) => {
       label: route.name,
       items: route.children.map((child) => ({
         label: child.name,
+        icon: child.icon ?? '',
         route: route.path + '/' + child.path,
       })),
     };
@@ -13,6 +14,7 @@ const items = routes.map((route) => {
     return {
       label: route.name,
       route: route.path,
+      icon: route.icon ?? '',
     };
   }
 });

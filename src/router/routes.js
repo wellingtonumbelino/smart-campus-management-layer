@@ -6,6 +6,7 @@ const routes = [
   {
     path: '/',
     name: 'Home',
+    icon: 'pi pi-home',
     component: lazyLoad('HomeView'),
     meta: {
       pageTitle: 'Home',
@@ -16,19 +17,36 @@ const routes = [
     name: 'Rooms',
     children: [
       {
-        path: 'list',
-        name: 'List Rooms',
-        component: lazyLoad('ListRoomsView', 'ListRooms'),
+        path: 'all',
+        name: 'List of Rooms',
+        icon: 'pi pi-building',
+        component: lazyLoad('ListRoomsView', 'Rooms'),
         meta: {
-          pageTitle: 'Salas Cadastradas',
+          pageTitle: 'Rooms',
+        },
+      },
+    ],
+  },
+  {
+    path: '/devices',
+    name: 'Devices',
+    children: [
+      {
+        path: 'all',
+        name: 'List of Devices',
+        icon: 'pi pi-wifi',
+        component: lazyLoad('ListDevicesView', 'Devices'),
+        meta: {
+          pageTitle: 'Devices',
         },
       },
       {
-        path: 'create',
-        name: 'Create Room',
-        component: lazyLoad('CreateRoomView', 'CreateRoom'),
+        path: 'groups',
+        name: 'List of Device Groups',
+        icon: 'pi pi-th-large',
+        component: lazyLoad('ListDevicesGroupView', 'DevicesGroup'),
         meta: {
-          pageTitle: 'Criar Sala',
+          pageTitle: 'Device Groups',
         },
       },
     ],

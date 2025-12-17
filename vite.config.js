@@ -4,7 +4,6 @@ import { defineConfig } from 'vite';
 import vue from '@vitejs/plugin-vue';
 import vueDevTools from 'vite-plugin-vue-devtools';
 
-// https://vite.dev/config/
 export default defineConfig({
   plugins: [vue(), vueDevTools()],
   resolve: {
@@ -14,10 +13,15 @@ export default defineConfig({
   },
   server: {
     proxy: {
-      '/api': {
-        target: 'http://smart.quixada.ufc.br:1026',
+      'apiOrion': {
+        target: process.env.VITE_API_ORION_URL,
         changeOrigin: true,
-        rewrite: (path) => path.replace(/^\/api/, ''),
+        rewrite: (path) => path.replace(/^\/apiOrion/, ''),
+      },
+      'apiIot': {
+        target: process.env.VITE_API_IOT_URL,
+        changeOrigin: true,
+        rewrite: (path) => path.replace(/^\/apiIot/, ''),
       },
     },
   },

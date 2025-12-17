@@ -1,11 +1,21 @@
 import axios from 'axios';
 
-const api = axios.create({
-  baseURL: import.meta.env.VITE_API_URL,
+const apiRoom = axios.create({
+  baseURL: '/apiOrion',
   headers: {
+    Accept: 'application/json',
     'Access-Control-Allow-Origin': '*',
     'Content-Type': 'application/json',
   },
 });
 
-export default api;
+const apiDevice = axios.create({
+  baseURL: '/apiIot/v1',
+  headers: {
+    Accept: 'application/json',
+    'Access-Control-Allow-Origin': '*',
+    'Content-Type': 'application/json',
+  },
+});
+
+export { apiRoom, apiDevice };

@@ -1,8 +1,10 @@
-import api from '@/api/apiConfig';
+import { apiRoom } from '@/api/apiConfig';
 
 export async function getAllBuildings() {
   try {
-    const { data } = await api.get('/entities/?type=Room&options=keyValues&attrs=name,description');
+    const { data } = await apiRoom.get(
+      '/entities/?type=Room&options=keyValues&attrs=name,description',
+    );
     console.log('Request', data);
     return { data, error: null };
   } catch (error) {
