@@ -1,7 +1,7 @@
 <script setup>
-import { getAllRooms } from '@/services/roomService';
 import { onMounted, ref } from 'vue';
 import CreateRoomDialog from './CreateRoomDialog.vue';
+import { getAllRooms } from '@/services/roomService';
 
 const columns = [
   { header: 'ID', field: 'id' },
@@ -49,7 +49,14 @@ async function loadingAllRooms() {
         </div>
       </template>
       <Column v-for="col in columns" :field="col.field" :header="col.header" />
-      <Column header="Actions"></Column>
+      <Column header="Actions" style="width: 10%">
+        <template #body>
+          <div class="action-buttons">
+            <Button icon="pi pi-pencil" severity="info" />
+            <Button icon="pi pi-trash" severity="danger" />
+          </div>
+        </template>
+      </Column>
       <template #empty>
         <p class="empty-text">No rooms registered.</p>
       </template>
@@ -62,6 +69,11 @@ async function loadingAllRooms() {
   .table-header {
     display: flex;
     justify-content: flex-end;
+  }
+
+  .action-buttons {
+    display: flex;
+    gap: 0.5rem;
   }
 
   .empty-text {

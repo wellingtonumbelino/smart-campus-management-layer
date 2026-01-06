@@ -3,7 +3,7 @@ import { apiRoom } from '@/api/apiConfig';
 export async function getAllRooms() {
   try {
     const response = await apiRoom.get(
-      '/v2/entities/?type=Room&options=keyValues&attrs=name,description',
+      '/entities/?type=Room&options=keyValues&attrs=name,description',
     );
     return { data: response.data, error: null };
   } catch (error) {

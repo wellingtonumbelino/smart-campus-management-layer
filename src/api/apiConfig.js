@@ -1,10 +1,9 @@
 import axios from 'axios';
 
 const apiRoom = axios.create({
-  baseURL: '/apiOrion',
+  baseURL: 'http://smartcampus.quixada.ufc.br:1026/v2',
   headers: {
     Accept: 'application/json',
-    'Access-Control-Allow-Origin': '*',
     'Content-Type': 'application/json',
   },
 });
