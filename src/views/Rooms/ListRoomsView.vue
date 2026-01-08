@@ -10,9 +10,8 @@ const columns = [
 ];
 
 const createRoomDialog = ref(null);
-
-let tableLoading = ref(false);
-let rooms = ref([]);
+const tableLoading = ref(false);
+const rooms = ref([]);
 
 onMounted(async () => {
   loadingAllRooms();
@@ -20,7 +19,7 @@ onMounted(async () => {
 
 function openCreateRoomDialog() {
   if (createRoomDialog.value) {
-    createRoomDialog.value.toggleDialog();
+    createRoomDialog.value.toggleDialog(rooms.value[rooms.value.length - 1] || null);
   }
 }
 
@@ -41,7 +40,7 @@ async function loadingAllRooms() {
 
 <template>
   <div class="list-rooms">
-    <CreateRoomDialog ref="createRoomDialog" />
+    <CreateRoomDialog ref="createRoomDialog" @roomCreated="loadingAllRooms" />
     <DataTable stripedRows :loading="tableLoading" :value="rooms">
       <template #header>
         <div class="table-header">
