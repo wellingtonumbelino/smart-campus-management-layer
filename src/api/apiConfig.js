@@ -9,10 +9,9 @@ const apiRoom = axios.create({
 });
 
 const apiDevice = axios.create({
-  baseURL: '/apiIot/v1',
+  baseURL: 'http://smartcampus.quixada.ufc.br:4041/iot',
   headers: {
     Accept: 'application/json',
-    'Access-Control-Allow-Origin': '*',
     'Content-Type': 'application/json',
   },
 });

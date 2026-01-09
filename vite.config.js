@@ -11,18 +11,4 @@ export default defineConfig({
       '@': fileURLToPath(new URL('./src', import.meta.url)),
     },
   },
-  server: {
-    proxy: {
-      'apiOrion': {
-        target: process.env.VITE_API_ORION_URL,
-        changeOrigin: true,
-        rewrite: (path) => path.replace(/^\/apiOrion/, ''),
-      },
-      'apiIot': {
-        target: process.env.VITE_API_IOT_URL,
-        changeOrigin: true,
-        rewrite: (path) => path.replace(/^\/apiIot/, ''),
-      },
-    },
-  },
 });

@@ -2,7 +2,7 @@
 import { createNewRoom } from '@/services/roomService';
 import { ref } from 'vue';
 
-defineEmits(['roomCreated']);
+const emit = defineEmits(['roomCreated']);
 
 const showModal = ref(false);
 const roomName = ref('');
@@ -20,11 +20,11 @@ function toggleDialog(lastRoom = null) {
   else showModal.value = true;
 }
 
-function createRoom() {
-  createNewRoom(roomId.value, roomName.value, roomDescription.value);
+async function createRoom() {
+  await createNewRoom(roomId.value, roomName.value, roomDescription.value);
+  emit('roomCreated');
   clearForm();
   toggleDialog();
-  emit('roomCreated');
 }
 
 function clearForm() {

@@ -1,9 +1,33 @@
 <script setup>
+import { getAllDevices } from '@/services/deviceService';
+import { onMounted, ref } from 'vue';
+
 const columns = [
   { header: 'ID', field: 'id' },
   { header: 'Name', field: 'name' },
   { header: 'Description', field: 'description' },
 ];
+
+const tableLoading = ref(false);
+const devices = ref([]);
+
+onMounted(async () => {
+  await loadingAllDevices();
+});
+
+async function loadingAllDevices() {
+  tableLoading.value = true;
+
+  const { data, error } = await getAllDevices();
+
+  if (error) {
+    console.error('Error loading devices:', error);
+  } else {
+    devices.value = data;
+  }
+
+  tableLoading.value = false;
+}
 </script>
 
 <template>

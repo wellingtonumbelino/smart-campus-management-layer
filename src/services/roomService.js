@@ -26,8 +26,15 @@ export async function createNewRoom(id, name, description) {
       refBuilding: { type: 'Relationship', value: 'urn:ngsi-ld:Building:003' },
     };
 
-    const response = await apiRoom.post('/entities/', newRoom);
-    return { data: response.data, error: null };
+    await apiRoom.post('/entities/', newRoom);
+  } catch (error) {
+    return { data: null, error };
+  }
+}
+
+export async function deleteRoomById(id) {
+  try {
+    await apiRoom.delete(`/entities/${id}`);
   } catch (error) {
     return { data: null, error };
   }

@@ -1,7 +1,7 @@
 <script setup>
 import { onMounted, ref } from 'vue';
 import CreateRoomDialog from './CreateRoomDialog.vue';
-import { getAllRooms } from '@/services/roomService';
+import { deleteRoomById, getAllRooms } from '@/services/roomService';
 
 const columns = [
   { header: 'ID', field: 'id' },
@@ -14,7 +14,7 @@ const tableLoading = ref(false);
 const rooms = ref([]);
 
 onMounted(async () => {
-  loadingAllRooms();
+  await loadingAllRooms();
 });
 
 function openCreateRoomDialog() {
@@ -36,6 +36,11 @@ async function loadingAllRooms() {
 
   tableLoading.value = false;
 }
+
+async function removeRoomById(id) {
+  await deleteRoomById(id);
+  loadingAllRooms();
+}
 </script>
 
 <template>
@@ -49,10 +54,14 @@ async function loadingAllRooms() {
       </template>
       <Column v-for="col in columns" :field="col.field" :header="col.header" />
       <Column header="Actions" style="width: 10%">
-        <template #body>
+        <template #body="slotProps">
           <div class="action-buttons">
             <Button icon="pi pi-pencil" severity="info" />
-            <Button icon="pi pi-trash" severity="danger" />
+            <Button
+              icon="pi pi-trash"
+              severity="danger"
+              @click="removeRoomById(slotProps.data.id)"
+            />
           </div>
         </template>
       </Column>
